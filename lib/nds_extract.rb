@@ -6,13 +6,20 @@ require 'directors_database'
 # { directorOne => allTheMoneyTheyMade, ... }
 
 def directors_totals(nds)
-  director_hash = {}
-  director_index = 0
-  while director_index < directors_database.length do
-    key = directors_database[director_index][:name]
-    director_hash[key] = gross_for_director(director_data)
-    director_index += 1
-  end
+director_hash = {} 
+director_index = 0
+while director_index < directors_database.length do 
+  key = directors_database[director_index][:name]
+  
+  director_gross = 0  ##  part of gross_for_director
+  movie_index = 0  ##
+  while movie_index < directors_database[director_index][:movies].length do ##
+    director_gross += directors_database[director_index][:movies][movie_index][:worldwide_gross] ##
+    director_hash[key] = director_gross
+    movie_index += 1  ##
+  end  ##
+  director_index += 1 
+end 
 director_hash
 end
 
